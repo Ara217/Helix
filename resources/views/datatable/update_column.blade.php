@@ -1,0 +1,1 @@
+<a class="btn btn-success"  href="articles/{{$articleId}}/edit">Update</a>

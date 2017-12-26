@@ -1,0 +1,1 @@
+<a href="{{$articleUrl}}" target="_blank">{{$articleUrl}}</a>
