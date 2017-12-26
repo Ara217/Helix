@@ -8,6 +8,7 @@ use App\Article;
 use Yajra\Datatables\Datatables;
 use Carbon\Carbon;
 use Image;
+use File;
 
 class ArticleController extends Controller
 {
@@ -56,14 +57,14 @@ class ArticleController extends Controller
         $newArticle->date = Carbon::now();
         $newArticle->image = $imageName;
         $newArticle->save();
-        // $newArticle = Article::create([
-        //     'title' => $request-title,
-        //     'description' => $request-description,
-        //     'date' => Carbon::now(),
-        //     'image' => $imageName,
-        // ]);
+
 
         if ($newArticle) {
+
+            if (!is_dir(public_path('/images/articles/'))) {
+                File::makeDirectory(public_path( '/images/articles/'), 0777, true);
+            };
+
             Image::make($request->file('image'))->save(public_path('/images/articles/'.  $imageName));
         }
         
